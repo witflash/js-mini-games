@@ -31,19 +31,15 @@ var gulp         = require('gulp'),
 
 gulp.task('nunjucks', function () {
 	return gulp.src(config.src.html + '**/[^_]*.html')
-		.pipe(nunjucks.compile())
-		.pipe(gulp.dest(config.dest.root))
-		.pipe(browserSync.reload({ stream: true }))
+	.pipe(nunjucks.compile())
+	.pipe(gulp.dest(config.dest.root));
 });
 
-gulp.task('scss', ['nunjucks'], function() {
+gulp.task('scss', function() {
 	return gulp.src(config.src.sass + '**/*.scss')
-	.pipe(scss().on( 'error', function( error )
-      {console.log( error );} )
-	)
+	.pipe(scss().on( 'error', scss.logError ))
 	.pipe(autoprefixer(['last 2 versions'], {cascade:true}))
-	.pipe(gulp.dest(config.dest.css))
-	.pipe(browserSync.reload({stream: true}));
+	.pipe(gulp.dest(config.dest.css));
 });
 
 gulp.task('css-min', ['scss'], function(){
@@ -64,7 +60,7 @@ gulp.task('img', function(){
 	.pipe(gulp.dest(config.dest.img));
 });
 
-gulp.task('js', ['scss'], function() {
+gulp.task('js', function() {
 	return gulp.src(config.src.js + '**/*.js')
 	.pipe(concat('app.js'))
 	.pipe(gulp.dest(config.dest.js));
@@ -77,12 +73,12 @@ gulp.task('uglify', ['js'],  function() {
 	.pipe(gulp.dest(config.dest.js))
 });
 
-gulp.task('browser-sync', ['js'], function(){
+gulp.task('browser-sync', function(){
 	browserSync({
 		server: {
 			baseDir: config.dest.root
 		},
-		notify: false
+		notify: true
 	});
 });
 
@@ -91,9 +87,9 @@ gulp.task('clean', function(){
 });
 
 gulp.task('default', ['browser-sync', 'nunjucks', 'scss', 'js'], function() {
-	gulp.watch(config.src.sass + '**/*.scss', ['scss', browserSync.reload]);
 	gulp.watch(config.src.html + '**/*.html', ['nunjucks', browserSync.reload]);
-	gulp.watch(config.src.js + '**/*.js', ['js'], browserSync.reload);
+	gulp.watch(config.src.sass + '**/*.scss', ['scss', browserSync.reload]);
+	gulp.watch(config.src.js + '**/*.js', ['js', browserSync.reload]);
 	
 });
 

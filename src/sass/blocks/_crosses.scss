@@ -4,7 +4,8 @@ $line: 4px solid darkgray;
 	display: flex;
 	flex-direction: column;
 	width: 300px;
-	// background-color: lightgray;
+	font-family: sans-serif;
+	user-select: none;
 
 	&__row {
 		width: auto;
@@ -12,16 +13,19 @@ $line: 4px solid darkgray;
 	}
 
 	&__cell {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		width: 100px;
 		height: 100px;
 		box-sizing: border-box;
-		// border: $line;
+		font-size: 3em;
+		transition-duration: 0.3s;		
 
 		&:hover {
 			cursor: pointer;
+			background-color: rgba(0,0,0,0.1);
 		}
 	}
 
@@ -39,4 +43,12 @@ $line: 4px solid darkgray;
 		border: $line;
 	}
 
+	&__char {
+		transform: scale(0);
+		transition-duration: 1s;	
+	}
+	
+	&__check {
+		transform: scale(1); 
+	}
 }
