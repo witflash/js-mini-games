@@ -1,17 +1,22 @@
-var cell = '.crosses__cell',
+var cells = '.crosses__cell',
     checked = 'crosses__check',
     cross = 'X',
     zero = 'O',
     playerOne = true,
     endGame = false;
 
-var allCell = document.querySelectorAll(cell);
-for (i = 0; i < allCell.length; i++) {
-    allCell[i].addEventListener('click', toCheck);
+var allCells = document.querySelectorAll(cells);
+for (i = 0; i < allCells.length; i++) {
+    allCells[i].addEventListener('click', toCheck);
 };
 
 function toCheck() {
-    this.children[0].innerHTML = playerOne ? cross : zero;
-    this.children[0].classList.add(checked);
-    playerOne = !playerOne;
+    var cell = this.children[0];
+    if (cell.innerHTML == 0) {
+        cell.innerHTML = playerOne ? cross : zero;
+        cell.classList.add(checked);
+        playerOne = !playerOne;
+    } else {
+        alert('This cell already marked.\nPlease, take another choice.')
+    }
 }
