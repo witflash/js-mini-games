@@ -3,13 +3,13 @@ $line: 4px solid darkgray;
 .crosses {
 	display: flex;
 	flex-direction: column;
-	width: 300px;
+	// width: 350px;
 	font-family: sans-serif;
 	user-select: none;
 
 	&__row {
-		width: auto;
 		display: flex;
+		justify-content: center;
 	}
 
 	&__cell {
@@ -19,7 +19,7 @@ $line: 4px solid darkgray;
 		justify-content: center;
 		width: 100px;
 		height: 100px;
-		box-sizing: border-box;
+		// box-sizing: border-box;
 		font-size: 3em;
 		transition-duration: 0.3s;		
 
