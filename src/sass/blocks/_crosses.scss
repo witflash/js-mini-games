@@ -1,0 +1,42 @@
+$line: 4px solid darkgray;
+
+.crosses {
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+	// background-color: lightgray;
+
+	&__row {
+		width: auto;
+		display: flex;
+	}
+
+	&__cell {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100px;
+		height: 100px;
+		box-sizing: border-box;
+		// border: $line;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	&__cell_col {
+		border-left: $line;
+		border-right: $line;
+	}
+
+	&__cell_row {
+		border-top: $line;
+		border-bottom: $line;
+	}
+
+	&__cell_center {
+		border: $line;
+	}
+
+}

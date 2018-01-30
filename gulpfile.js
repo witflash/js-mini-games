@@ -91,8 +91,10 @@ gulp.task('clean', function(){
 });
 
 gulp.task('default', ['browser-sync', 'nunjucks', 'scss', 'js'], function() {
-	gulp.watch(config.src.sass + '**/*.scss', ['scss']);
-	gulp.watch(config.src.html + '*.html', ['nunjucks', browserSync.reload]);
+	gulp.watch(config.src.sass + '**/*.scss', ['scss', browserSync.reload]);
+	gulp.watch(config.src.html + '**/*.html', ['nunjucks', browserSync.reload]);
+	gulp.watch(config.src.js + '**/*.js', ['js'], browserSync.reload);
+	
 });
 
 gulp.task('build', ['clean', 'nunjucks', 'scss', 'img', 'css-min', 'js', 'uglify'], function() {
